@@ -17,22 +17,16 @@ The **Inventory Management Subsystem** is a component of the larger project aime
 1. Clone the repository using:
    ```bash
    git clone https://github.com/chrismaynardampon/bevanda.git
-```
 2. Navigate to the project directory:
     ```bash
     cd bevanda
-    ```
 3. Install dependencies:
     ```bash
     pip install -r requirements.txt
-    ```
 4. Apply migrations:
     ```bash
     python manage.py migrate
-    ```
 5. Start the development server:
     ```bash
     python manage.py runserver
-    ```
-6. Access the application at ![http://127.0.0.1:8000/](http://127.0.0.1:8000/).
-```
+6. Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
