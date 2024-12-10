@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Book an Event</h1>
+    
+    <!-- Booking Form -->
+    <form method="POST" action="{% url 'book_event' %}">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="event_date">Event Date:</label>
+            <input type="date" id="event_date" name="event_date" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="event_time">Event Time:</label>
+            <input type="time" id="event_time" name="event_time" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </div>
+    </form>
+
+    <!-- List of Events -->
+    <h2 class="text-center mt-5">Booked Events</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.event_date }}</td>
+                <td>{{ event.event_time }}</td>
+                <td>
+                    <a href="{% url 'update_event' event.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'delete_event' event.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No bookings found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

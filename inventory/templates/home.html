@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Welcome to Bevanda Mobile Bar</h1>
+    <p class="text-center">Easily manage your event bookings and inventory!</p>
+
+    <div class="row mt-5">
+        <!-- Event Booking Section -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Book an Event</h5>
+                    <p class="card-text">Schedule a new event with Bevanda Mobile Bar.</p>
+                    <a href="{% url 'book_event' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Management Section -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Inventory</h5>
+                    <p class="card-text">Track your bar's ingredients and stock levels.</p>
+                    <a href="{% url 'index' %}" class="btn btn-success">View Inventory</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event List Section -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">View Booked Events</h5>
+                    <p class="card-text">Check all your booked events and make changes.</p>
+                    <a href="{% url 'book_event' %}" class="btn btn-warning">View Events</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats Section (Optional) -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card bg-info text-white text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Events Booked</h5>
+                    <p class="card-text">{{ total_events }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-success text-white text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Inventory Items</h5>
+                    <p class="card-text">{{ total_inventory }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-danger text-white text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Events Today</h5>
+                    <p class="card-text">{{ events_today }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

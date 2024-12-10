@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Stock-Out</h1>
+
+    <!-- Stock-Out Form -->
+    <form method="POST" action="{% url 'stock_out' product.id %}" id="stock-out-form">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="ingredient">Ingredient:</label>
+            <input type="text" name="ingredient" id="ingredient" class="form-control" value="{{ product.product_name }}" readonly>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="current_quantity">Current Quantity:</label>
+            <input type="number" id="current_quantity" class="form-control" value="{{ product.quantity }}" readonly>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="quantity">Quantity to Stock-Out:</label>
+            <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Enter quantity" required>
+            <small id="error-message" class="text-danger d-none">Entered quantity exceeds available stock.</small>
+        </div>
+        
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Stock-Out</button>
+            <a href="{% url 'products' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Validate stock-out quantity
+    document.getElementById('stock-out-form').addEventListener('submit', function(event) {
+        const currentQuantity = parseFloat(document.getElementById('current_quantity').value);
+        const enteredQuantity = parseFloat(document.getElementById('quantity').value);
+
+        if (enteredQuantity > currentQuantity || enteredQuantity <= 0) {
+            event.preventDefault();
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = enteredQuantity <= 0
+                ? 'Please enter a valid positive number.'
+                : 'Entered quantity exceeds available stock.';
+            errorMessage.classList.remove('d-none');
+        }
+    });
+</script>
+{% endblock %}
