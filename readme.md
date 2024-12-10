@@ -17,7 +17,7 @@ The **Inventory Management Subsystem** is a component of the larger project aime
 1. Clone the repository using:
    ```bash
    git clone https://github.com/chrismaynardampon/bevanda.git
-```markdown
+```
 2. Navigate to the project directory:
     ```bash
     cd bevanda
@@ -34,5 +34,5 @@ The **Inventory Management Subsystem** is a component of the larger project aime
     ```bash
     python manage.py runserver
     ```
-6. Access the application at [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+6. Access the application at ![http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 ```
